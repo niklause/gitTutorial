@@ -1,1 +1,50 @@
-First file added By Vinayak .Now I am modifying it
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Set<Character> set=new HashSet<Character>();
+		Set<Character> patientSet=new HashSet<Character>();
+		Scanner scInput=new Scanner(System.in);
+		String virusName=scInput.nextLine();
+		int patientCount=Integer.parseInt(scInput.nextLine());
+		String patients[] = new String[patientCount];
+		String result="";
+		for(int i=0;i<patientCount;i++)
+		{
+			patients[i]=scInput.nextLine();
+		}
+		for(int j=0;j<patients.length;j++)
+		{
+			char[] charArray=virusName.toCharArray();
+			for(char a:charArray)
+			{
+				set.add(a);
+			}
+			char[] charPatient=patients[j].toCharArray();
+			for(char pt:charPatient)
+			{
+				patientSet.add(pt);
+			}
+			set.addAll(patientSet);
+			if(set.size()==9 && patientSet.size()<charPatient.length)
+			{
+				result="NEGATIVE";
+			}
+			else if(set.size()==9)
+			{
+				result="POSITIVE";
+			}
+			else
+			{
+				result="NEGATIVE";
+			}
+			System.out.println(result);
+			set.clear();
+			patientSet.clear();
+		}
+		scInput.close();
+	}
+}
